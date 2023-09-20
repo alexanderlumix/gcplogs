@@ -1,17 +1,11 @@
-from google.cloud import logging
+import logging
+
+# Set up logging configuration
+logging.basicConfig(level=logging.ERROR, format='%(levelname)s: %(message)s')
 
 def log_message():
-    # Instantiates a client
-    client = logging.Client()
-
-    # The name of the log to write to
-    logger = client.logger('my-custom-log')  # You can choose any name
-
-    # Log with the desired severity
-    logger.log_struct(
-        {"message": "This is an ERROR message for GCP logs"},
-        severity="ERROR",
-    )
+    logger = logging.getLogger(__name__)
+    logger.error("This is an ERROR message for GCP logs")
 
 if __name__ == "__main__":
     log_message()
